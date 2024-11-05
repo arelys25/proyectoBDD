@@ -18,7 +18,7 @@ class MasterPanel:
         self.menu.geometry('1000x600')
         utl.center_window(self.menu,1000,600)
         self.menu.config(bg='gray')
-        self.menu.resizable(width=0, height=0)
+        self.menu.resizable(width=True, height=True)
         
         logoPage = utl.read_Image('./images/logo.png',(70,70))
         logoPageLbl = Label(self.menu,image=logoPage,border=0)
@@ -35,73 +35,49 @@ class MasterPanel:
             topCars = Toplevel()
             topCars.title('Electric Cars')
             topCars.iconbitmap('./images/CarIcon.ico')
-            w,h = topCars.winfo_screenwidth(),topCars.winfo_screenheight() # que la ventana se adapte ala pantalla 
-            topCars.geometry("%dx%d+0+0" % (w,h))
+            w, h = topCars.winfo_screenwidth(), topCars.winfo_screenheight()
+            topCars.geometry("%dx%d+0+0" % (w, h))
             topCars.config(bg='gray')
-            utl.center_window(topCars,w,h)
+            utl.center_window(topCars, w, h)
+
             
-            # Scrollbar
-            mainFrameCars = Frame(topCars)
-            mainFrameCars.pack(fill=BOTH,expand=True)
-            my_canvasCar = Canvas(mainFrameCars,bg='blue')
-            my_canvasCar.pack(side=LEFT,fill= BOTH,expand=True)
-            my_scrollbarCar = ttk.Scrollbar(mainFrameCars,orient=VERTICAL,command=my_canvasCar.yview)
-            my_scrollbarCar.pack(side=RIGHT,fill=Y)
-            my_canvasCar.config(yscrollcommand=my_scrollbarCar.set)
-            #my_canvasCar.bind('<Configure>', lambda e: my_canvasCar.configure(scrollregion=my_canvasCar.bbox('all')))
-            secondFrame = Frame(my_canvasCar,bg='GRAY')
-            secondFrame.config(width=w,height=h)
-            my_canvasCar.create_window((0,0),window=secondFrame,anchor='nw')
-            
-            # crear 50 botones
-            #for thing in range(50):
-            #    Button(secondFrame,text=f'Venta {thing}!').pack(pady=10,padx=10)
-            
-            hiUserlbl = Label(secondFrame,text='Hola Usuario',font=('Arial', 35),bg='GRAY')
-            hiUserlbl.place(x=800,y=60)
-            
-            logoMenu = utl.read_Image('./images/logo.png',(70,70))
-            
+
+            # Crear elementos dentro de secondFrame usando grid
+            hiUserlbl = Label(topCars, text='Hola Usuario', font=('Arial', 35), bg='GRAY')
+            hiUserlbl.grid(row=0, column=1, pady=30, padx=30)
+
+            logoMenu = utl.read_Image('./images/logo.png', (70, 70))
+
             def backMenu():
                 topCars.withdraw()
                 self.menu.deiconify()
-            
-            logoMenubtn = Button(mainFrameCars,image=logoMenu,command=backMenu,border=0)
-            logoMenubtn.place(x=0,y=0)
-            
-            car1 = utl.read_Image('./images/cars/ChevroletBoltEV.png',(200,170))
-            car1lbl = Label(secondFrame,image=car1,border=0)
-            car1lbl.place(x=200,y=200)
-            
-            car2 = utl.read_Image('./images/cars/KiaSoulEV.png',(200,170))
-            car2lbl = Label(secondFrame,image=car2,border=0)
-            car2lbl.place(x=200,y=450)
-            
-            car3 = utl.read_Image('./images/cars/MazdaMX-30.png',(200,170))
-            car3lbl = Label(secondFrame,image=car3,border=0)
-            car3lbl.place(x=200,y=700)
-            
-            car4 = utl.read_Image('./images/cars/NissanLeaf.png',(200,170))
-            car4lbl = Label(secondFrame,image=car4,border=0)
-            car4lbl.place(x=200,y=950)
-            
-            car5 = utl.read_Image('./images/cars/TeslaModel3LongRangeAWD.png',(200,170))
-            car5lbl = Label(secondFrame,image=car5,border=0)
-            car5lbl.place(x=200,y=1200)
-            
-            car6 = utl.read_Image('./images/cars/VolkswagenID4.png',(200,170))
-            car6lbl = Label(secondFrame,image=car6,border=0)
-            car6lbl.place(x=200,y=1450) 
-            
-            secondFrame.update_idletasks()  # Asegura que todos los elementos estén cargados
-            my_canvasCar.config(scrollregion=my_canvasCar.bbox('all'))
-            
-            # Habilitar scroll con la rueda del mouse
-            def _on_mouse_wheel(event):
-                my_canvasCar.yview_scroll(-1 * int(event.delta / 120), "units")
 
-            my_canvasCar.bind_all("<MouseWheel>", _on_mouse_wheel)
+            logoMenubtn = Button(topCars, image=logoMenu, command=backMenu, border=0)
+            logoMenubtn.grid(row=0, column=0, padx=10, pady=10)
+
+            # Cargar imágenes de coches y ubicarlas en una cuadrícula
+            cars_images = [
+                ('./images/cars/ChevroletBoltEV.png', 1),
+                ('./images/cars/KiaSoulEV.png', 2),
+                ('./images/cars/MazdaMX-30.png', 3),
+                ('./images/cars/NissanLeaf.png', 4),
+                ('./images/cars/TeslaModel3LongRangeAWD.png', 5),
+                ('./images/cars/VolkswagenID4.png', 6)
+            ]
+
+            for i, (img_path, row) in enumerate(cars_images):
+                car_img = utl.read_Image(img_path, (200, 170))
+                car_lbl = Label(topCars, image=car_img, border=0)
+                car_lbl.grid(row=row, column=1, pady=30, padx=30)
+                car_lbl.image = car_img  # Evitar que la imagen sea recolectada por el garbage collector
+
+            # Actualizar el área de desplazamiento después de agregar todos los elementos
+            topCars.update_idletasks()
             
+
+            # Habilitar scroll con la rueda del mouse
+            
+
             topCars.mainloop()
         
         logoCarlbl = Label(self.menu,text='Coche',font=('Arial', 25),bg='gray')
@@ -118,23 +94,72 @@ class MasterPanel:
             topScooter.iconbitmap('./images/CarIcon.ico')
             w,h = topScooter.winfo_screenwidth(),topScooter.winfo_screenheight() # que la ventana se adapte ala pantalla 
             topScooter.geometry("%dx%d+0+0" % (w,h))
-            topScooter.config(bg='gray')
+            topScooter.config(bg='pink')
             utl.center_window(topScooter,w,h)
             
             
+            # Scrolling 
+            scrollbar = tk.Scrollbar(topScooter)
+            canvas = Canvas(topScooter,bg='pink',yscrollcommand=scrollbar.set)
+            scrollbar.config(command=canvas.yview)
+            scrollbar.pack(side=RIGHT,fill=Y)
+            secondFrame = Frame(canvas,bg='pink')
+            canvas.pack(side='left',fill='both',expand=TRUE)
+            canvas.create_window(0,0,window=secondFrame,anchor='n')
             
-            scooterLbl = Label(topScooter,text='Hola Usuario',font=('Arial', 15))
-            scooterLbl.pack()
+            secondFrame.grid_columnconfigure(0, weight=1)
+            secondFrame.grid_columnconfigure(1, weight=1)
+            secondFrame.grid_columnconfigure(2, weight=1)
             
-            img = utl.read_Image('./images/cars/MazdaMX-30.png',(200,170))
+            scooterLbl = Label(secondFrame,text='Hola Usuario',font=('Arial', 15))
+            scooterLbl.grid(row=0, column=3)
+                        
+            # images
+            sc1 = utl.read_Image('./images/scooter/City.png',(200,170))
+            sc2 = utl.read_Image('./images/scooter/dualtron-thunder-3-electric-scooter-front-left_1200x.png',(200,170))
+            sc3 = utl.read_Image('./images/scooter/E300ElectricScooter.png',(200,170))
+            sc4 = utl.read_Image('./images/scooter/G-Booster.png',(200,170))
+            sc5 = utl.read_Image('./images/scooter/MiElectricScooterPro2.png',(200,170))
+            sc6 = utl.read_Image('./images/scooter/NinebotKickScooterMAXG30.png',(200,170))
+            sc7 = utl.read_Image('./images/scooter/S2Pro.png',(200,170))
             
+            scooterSelect = IntVar()
+            
+            sc1lbl = Radiobutton(secondFrame,image=sc1,bd=0,value=1,variable=scooterSelect)
+            sc1lbl.grid(row=1,column=2, pady=30, padx=30)
+            sc2lbl = Radiobutton(secondFrame,image=sc2,bd=0,value=2,variable=scooterSelect)
+            sc2lbl.grid(row=1,column=3, pady=30, padx=30)
+            sc3lbl = Radiobutton(secondFrame,image=sc3,bd=0,value=3,variable=scooterSelect)
+            sc3lbl.grid(row=1,column=4, pady=30, padx=30)
+            sc4lbl = Radiobutton(secondFrame,image=sc4,bd=0,value=4,variable=scooterSelect)
+            sc4lbl.grid(row=2,column=2, pady=30, padx=30)
+            sc5lbl = Radiobutton(secondFrame,image=sc5,bd=0,value=5,variable=scooterSelect)
+            sc5lbl.grid(row=2,column=3, pady=30, padx=30)
+            sc6lbl = Radiobutton(secondFrame,image=sc6,bd=0,value=6,variable=scooterSelect)
+            sc6lbl.grid(row=2,column=4, pady=30, padx=30)
+            sc7lbl = Radiobutton(secondFrame,image=sc7,bd=0,value=7,variable=scooterSelect)
+            sc7lbl.grid(row=3,column=2, pady=30, padx=30)
+            
+            #scooter = scooterSelect.get()
+            
+            
+            
+            logoPage = utl.read_Image('./images/logo.png', (70, 70))            
             def backMenu():
                 topScooter.withdraw()
                 self.menu.deiconify()
+                            
+            imgLogolbl = Button(secondFrame,image=logoPage,command=backMenu,bd=0)
+            imgLogolbl.grid(row=0,column=0)
             
-            imglbl = Button(topScooter,image=img,command=backMenu)
-            imglbl.pack()
+            def _on_mouse_wheel(event):
+                canvas.yview_scroll(-1 * int(event.delta / 120), "units")
+
+            canvas.bind_all("<MouseWheel>", _on_mouse_wheel)
             
+            topScooter.update()
+            canvas.config(scrollregion=canvas.bbox('all'))
+                        
             topScooter.mainloop()
         
         logoScooter = utl.read_Image('./images/scooter/logoScooter.png',(200,170))
@@ -179,12 +204,4 @@ class MasterPanel:
         
             
         self.menu.mainloop()
-            
-        
-    
-    
-
-        
-    
-        
         
