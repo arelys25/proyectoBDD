@@ -6,9 +6,9 @@ from tkinter import ttk
 from tkinter import messagebox
 from tktooltip import ToolTip
 
-def infoPanelSc1 ():
+def infoPanelCar1 ():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -16,12 +16,12 @@ def infoPanelSc1 ():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/City.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/ChevroletBoltEV.png', (200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Apollo City\nVelocidad máx: 40 km/h\nPeso máx: 120 kg\nTamaño: 1210x620x1240 mm\nPeso: 18 kg\nTiempo de carga: 8 hrs\nPlegable: Sí\nVoltaje: 48 V\nSeguro: Sí\n$12 dls /hora'
+    txtVehiculo1 = 'Chevrolet Bolt EV\nCapacidad: 5 personas\nMaletero: 381 lts\nAutonomia: 416 km\nPotencia: 200hp\nVelocidad máxima: 150km/h\nTiempo de carga: 9 hrs (cargador nivel 2),\n1 hora (carga rápida)\nSeguro: Sí\n$90 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -90,7 +90,7 @@ def infoPanelSc1 ():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Apollo City'
+                        vehiculoNom = 'Chevrolet Bolt EV'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -113,7 +113,7 @@ def infoPanelSc1 ():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'Apollo City'
+                    vehiculoNom = 'Chevrolet Bolt EV'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
@@ -141,9 +141,9 @@ def infoPanelSc1 ():
     topVehiculo.mainloop()
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def infoPanelSc2():
+def infoPanelCar2():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -151,12 +151,12 @@ def infoPanelSc2():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/dualtron-thunder-3-electric-scooter-front-left_1200x.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/KiaSoulEV.png',(200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Dualtron Thunder\nVelocidad máx: 80 km/h\nPeso máx: 150 kg\nTamaño: 1238x609x1210 mm\nPeso: 43 kg\nTiempo de carga: 15 hrs\nPlegable: Sí\nVoltaje: 60 V\nSeguro: Sí\n$15 dls /hora'
+    txtVehiculo1 = 'KiaSoulEV\nCapacidad: 5 personas\nMaletero: 315 lts\nAutonomia: 383 km\nPotencia: 201 hp\nVelocidad máxima: 167 km/h\nTiempo de carga: 9 hrs (cargador nivel 2),\n1 hora (carga rápida)\nSeguro: Sí\n$65 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -225,7 +225,7 @@ def infoPanelSc2():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Dualtron Thunder'
+                        vehiculoNom = 'Kia Soul EV'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -248,7 +248,7 @@ def infoPanelSc2():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'Dualtron Thunder'
+                    vehiculoNom = 'Kia Soul EV'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
@@ -276,9 +276,9 @@ def infoPanelSc2():
     topVehiculo.mainloop()
     
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def infoPanelSc3():
+def infoPanelCar3():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -286,12 +286,12 @@ def infoPanelSc3():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/E300ElectricScooter.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/MazdaMX-30.png',(200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Razor E300 \nVelocidad máx: 24 km/h\nPeso máx: 100 kg\nTamaño: 1040x420x950 mm\nPeso: 19.5 kg\nTiempo de carga: 12 hrs\nPlegable: Sí\nVoltaje: 24 V\nSeguro: Sí\n$7 dls /hora'
+    txtVehiculo1 = 'Mazda MX-30\nCapacidad: 5 personas\nMaletero: 366 lts\nAutonomia: 161 km\nPotencia: 143 hp\nVelocidad máxima: 140 km/h\nTiempo de carga: 5 hrs (cargador nivel 2),\n36 min (carga rápida)\nSeguro: Sí\n$120 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -360,7 +360,7 @@ def infoPanelSc3():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Razor E300'
+                        vehiculoNom = 'Mazda MX-30'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -383,7 +383,7 @@ def infoPanelSc3():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'Razor E300'
+                    vehiculoNom = 'Mazda MX-30'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
@@ -411,9 +411,9 @@ def infoPanelSc3():
     topVehiculo.mainloop()
     
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def infoPanelSc4():
+def infoPanelCar4():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -421,12 +421,12 @@ def infoPanelSc4():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/G-Booster.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/NissanLeaf.png',(200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Kugoo G-Booster\nVelocidad máx: 55 km/h\nPeso máx: 150 kg\nTamaño: 1200x620x1300 mm\nPeso: 30 kg\nTiempo de carga: 10 hrs\nPlegable: Sí\nVoltaje: 48 V\nSeguro: Sí\n$14 dls /hora'
+    txtVehiculo1 = 'Nissan Leaf\nCapacidad: 5 personas\nMaletero: 435 lts\nAutonomia: 240 km\nPotencia: 147 hp\nVelocidad máxima: 144 km/h\nTiempo de carga: 7.5 hrs (cargador nivel 2)\nSeguro: Sí\n$85 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -495,7 +495,7 @@ def infoPanelSc4():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Kugoo G-Booster'
+                        vehiculoNom = 'Nissan Leaf'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -518,7 +518,7 @@ def infoPanelSc4():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'Kugoo G-Booster'
+                    vehiculoNom = 'Nissan Leaf'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
@@ -546,9 +546,9 @@ def infoPanelSc4():
     topVehiculo.mainloop()
     
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def infoPanelSc5():
+def infoPanelCar5():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -556,12 +556,12 @@ def infoPanelSc5():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/MiElectricScooterPro2.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/TeslaModel3LongRangeAWD.png',(200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Mi Electric Pro 2\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\nTamaño: 1130x430x1180 mm\nPeso: 14.2 kg\nTiempo de carga: 9 hrs\nPlegable: Sí\nVoltaje: 36 V\nSeguro: Sí\n$8 dls /hora'
+    txtVehiculo1 = 'Tesla Model 3 Long Range AWD\nCapacidad: 5 personas\nMaletero: 425 lts\nAutonomia: 576 km\nPotencia: 346 hp\nVelocidad máxima: 233 km/h\nTiempo de carga: 8 hrs (cargador nivel 2),\n15 min (carga rápida)\nSeguro: Sí\n$130 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -630,7 +630,7 @@ def infoPanelSc5():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Mi Electric Pro 2'
+                        vehiculoNom = 'Tesla Model 3 Long Range AWD'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -653,7 +653,7 @@ def infoPanelSc5():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'Mi Electric Pro 2'
+                    vehiculoNom = 'Tesla Model 3 Long Range AWD'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
@@ -681,9 +681,9 @@ def infoPanelSc5():
     topVehiculo.mainloop()
     
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def infoPanelSc6():
+def infoPanelCar6():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -691,12 +691,12 @@ def infoPanelSc6():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/NinebotKickScooterMAXG30.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/VolkswagenID4.png',(200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Segway Ninebot KickScooter\nMAX G30\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\nTamaño: 1167x472x1203 mm\nPeso: 18.7 kg\nTiempo de carga: 6 hrs\nPlegable: Sí\nVoltaje: 36 V\nSeguro: Sí\n$10 dls /hora'
+    txtVehiculo1 = 'Volkswagen ID.4\nCapacidad: 5 personas\nMaletero: 543 lts\nAutonomia: 418 km\nPotencia: 201hp\nVelocidad máxima: 150km/h\nTiempo de carga: 7.5 hrs (cargador nivel 2),\n38 min (carga rápida)\nSeguro: Sí\n$125 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -765,7 +765,7 @@ def infoPanelSc6():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Segway Ninebot KickScooter MAX G30'
+                        vehiculoNom = 'Volkswagen ID.4'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -788,7 +788,7 @@ def infoPanelSc6():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'Segway Ninebot KickScooter MAX G30'
+                    vehiculoNom = 'Volkswagen ID.4'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
@@ -816,9 +816,9 @@ def infoPanelSc6():
     topVehiculo.mainloop()
     
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def infoPanelSc7():
+def infoPanelCar7():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -826,12 +826,12 @@ def infoPanelSc7():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/OXSuper.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/TeslaModel3StandardRangePlus.png',(200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Inokim OX Super\nVelocidad máx: 45 km/h\nPeso máx: 120 kg\nTamaño: 1200x600x1300 mm\nPeso: 28 kg\nTiempo de carga: 8 hrs\nPlegable: Sí\nVoltaje: 60 V\nSeguro: Sí\n$13 dls /hora'
+    txtVehiculo1 = 'Tesla Model 3 Standard Range Plus\nCapacidad: 5 personas\nMaletero: 425 lts\nAutonomia: 438 km\nPotencia: 283 hp\nVelocidad máxima: 225 km/h\nTiempo de carga: 9 hrs (cargador nivel 2),\n15 min (carga rápida)\nSeguro: Sí\n$128 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -900,7 +900,7 @@ def infoPanelSc7():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Inokim OX Super'
+                        vehiculoNom = 'Tesla Model 3 Standard Range Plus'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -923,7 +923,7 @@ def infoPanelSc7():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'TInokim OX Super'
+                    vehiculoNom = 'Tesla Model 3 Standard Range Plus'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
@@ -951,9 +951,9 @@ def infoPanelSc7():
     topVehiculo.mainloop()
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-def infoPanelSc8():
+def infoPanelCar8():
     topVehiculo = Toplevel()
-    topVehiculo.title('Electric Scooter Information')
+    topVehiculo.title('Electric Cars Information')
     topVehiculo.iconbitmap('./images/CarIcon.ico')
     topVehiculo.geometry('650x600')
     topVehiculo.config(bg='gray')
@@ -961,12 +961,12 @@ def infoPanelSc8():
     topVehiculo.resizable(width=False, height=False)
     
     # Leer y cargar la imagen
-    vehiculo = utl.read_Image('./images/scooter/S2Pro.png',(200, 170))
+    vehiculo = utl.read_Image('./images/cars/RenaultZoe.png',(200, 170))
     
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Hiboy S2 Pro\nVelocidad máx: 30 km/h\nPeso máx: 120 kg\nTamaño: 1180x480x1190 mm\nPeso: 16.5 kg\nTiempo de carga: 6 hrs\nPlegable: Sí\nVoltaje: 36 V\nSeguro: Sí\n$9 dls /hora'
+    txtVehiculo1 = 'Renault Zoe\nCapacidad: 5 personas\nMaletero: 338 lts\nAutonomia: 395 km\nPotencia: 135 hp\nVelocidad máxima: 140 km/h\nTiempo de carga: 8 hrs (cargador nivel 2),\n1 hora (carga rápida)\nSeguro: Sí\n$45 dls /day'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -1035,7 +1035,7 @@ def infoPanelSc8():
                     try:
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                        vehiculoNom = 'Hiboy S2 Pro'
+                        vehiculoNom = 'Renault Zoe'
             
                         txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                         messagebox.showinfo("Transaccion exitosa", txt)
@@ -1058,7 +1058,7 @@ def infoPanelSc8():
                 try:
                     cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
-                    vehiculoNom = 'Hiboy S2 Pro'
+                    vehiculoNom = 'Renault Zoe'
             
                     txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
                     messagebox.showinfo("Transaccion exitosa", txt)
