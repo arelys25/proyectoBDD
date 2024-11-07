@@ -14,6 +14,7 @@ class FormLogin(FormLoginDesigner):
         if login(user, password):
             self.window.destroy()  # Cerrar la ventana de login si es exitoso
             MasterPanel()  # Abrir el panel principal
+            #FormLogin.destroy()
         else:
             messagebox.showerror(message="La contraseña o el usuario no son correctos", title="Error")
 
