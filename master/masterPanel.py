@@ -5,10 +5,28 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from tktooltip import ToolTip
-from master import coche, scooter, bike
+from master import coche, scooter, bike,userMenuOptions
 
 
 class MasterPanel:
+    def show_menu(self):
+        # Muestra el menú desplegable en la posición del botón
+        x = self.menu_button.winfo_rootx()
+        y = self.menu_button.winfo_rooty() + self.menu_button.winfo_height()
+        self.user_menu.post(x, y)
+
+    def perfil(self):
+        # Acción para la opción "Perfil"
+        userMenuOptions.userPerfilInformation()
+
+    def sucursales(self):
+        # Acción para la opción "Sucursales"
+        userMenuOptions.userBranchesInformation()
+
+    def ayuda(self):
+        # Acción para la opción "Ayuda"
+        userMenuOptions.userUsInformation()
+    
     def __init__(self):
         #MENU PANEL 1
         global logoPage
@@ -19,13 +37,28 @@ class MasterPanel:
         self.menu.geometry('1000x600')
         utl.center_window(self.menu,1000,600)
         self.menu.config(bg='gray')
-        self.menu.resizable(width=True, height=True)
+        self.menu.resizable(width=0, height=0)
         
         logoPage = utl.read_Image('./images/logo.png',(70,70))
         logoPageLbl = Label(self.menu,image=logoPage,border=0)
         logoPageLbl.place(x=0,y=0)
         
         logoCar = utl.read_Image('./images/cars/ChevroletBoltEV.png',(200,170))
+        
+        # Menu de ayuda al usuario
+        # Cargar la imagen del botón del menú
+        self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
+    
+        # Crear el botón de imagen para el menú
+        self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+        self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
+    
+        # Crear el menú desplegable
+        self.user_menu = Menu(self.menu, tearoff=0)
+        self.user_menu.add_command(label="Perfil", command=self.perfil)  # Reemplaza con tus funciones
+        self.user_menu.add_command(label="Sucursales", command=self.sucursales)
+        self.user_menu.add_command(label="Ayuda", command=self.ayuda)
+    
         
         hiUser = Label(self.menu,text='¡Hola! ¿Que vehículo deseas rentar hoy?',font=('Arial', 30,BOLD),bg='gray',pady=25)
         hiUser.pack()
@@ -41,6 +74,7 @@ class MasterPanel:
             topCars.config(bg='gray')
             utl.center_window(topCars,w,h)
             
+            
             # Scrolling 
             scrollbar = tk.Scrollbar(topCars)
             canvas = Canvas(topCars,bg='pink',yscrollcommand=scrollbar.set)
@@ -49,6 +83,18 @@ class MasterPanel:
             secondFrame = Frame(canvas,bg='pink')
             canvas.pack(side='left',fill='both',expand=TRUE)
             canvas.create_window(0,0,window=secondFrame,anchor='n')
+            
+            self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
+    
+            # Crear el botón de imagen para el menú
+            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+            self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
+    
+            # Crear el menú desplegable
+            self.user_menu = Menu(secondFrame, tearoff=0)
+            self.user_menu.add_command(label="Perfil", command=self.perfil)  # Reemplaza con tus funciones
+            self.user_menu.add_command(label="Sucursales", command=self.sucursales)
+            self.user_menu.add_command(label="Ayuda", command=self.ayuda)
         
             # Crear elementos dentro de secondFrame usando grid
             hiUserlbl = Label(secondFrame, text='Sección de carros eléctricos', font=('Arial', 35,BOLD), bg='pink')
@@ -59,6 +105,10 @@ class MasterPanel:
             def backMenu():
                 topCars.withdraw()
                 self.menu.deiconify()
+                # Re-posicionar el botón al regresar
+                if not hasattr(self, 'menu_button') or not self.menu_button.winfo_exists():
+                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='pink')
+                    self.menu_button.place(relx=1.0, y=0, anchor='ne')
 
             logoMenubtn = Button(secondFrame, image=logoMenu, command=backMenu, border=0)
             logoMenubtn.grid(row=0,column=0)
@@ -150,6 +200,9 @@ class MasterPanel:
             txtcar8 = 'Renault Zoe\nCapacidad: 5 personas\nMaletero: 338 lts\n$45 dls /dia'
             infocar8 = Label(secondFrame,wraplength=300,text=txtcar8,font=('Arial', 15),anchor='w',justify='left',bg='white')
             infocar8.grid(row=4,column=5,pady=(20,20))
+            
+            secondFrame.update_idletasks()  # Forzar la actualización de secondFrame para obtener sus dimensiones
+            topCars.geometry(f"{secondFrame.winfo_width() +20}x{secondFrame.winfo_height()}")
 
             # Actualizar el área de desplazamiento después de agregar todos los elementos
             def _on_mouse_wheel(event):
@@ -188,6 +241,18 @@ class MasterPanel:
             secondFrame = Frame(canvas,bg='pink')
             canvas.pack(side='left',fill='both',expand=TRUE)
             canvas.create_window(0,0,window=secondFrame,anchor='n')
+            
+            self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
+    
+            # Crear el botón de imagen para el menú
+            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+            self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
+    
+            # Crear el menú desplegable
+            self.user_menu = Menu(secondFrame, tearoff=0)
+            self.user_menu.add_command(label="Perfil", command=self.perfil)  # Reemplaza con tus funciones
+            self.user_menu.add_command(label="Sucursales", command=self.sucursales)
+            self.user_menu.add_command(label="Ayuda", command=self.ayuda)
         
             # Crear elementos dentro de secondFrame usando grid
             hiUserlbl = Label(secondFrame, text='Sección de scooters eléctricos', font=('Arial', 35,BOLD), bg='pink')
@@ -198,6 +263,10 @@ class MasterPanel:
             def backMenu():
                 topScooters.withdraw()
                 self.menu.deiconify()
+                if not hasattr(self, 'menu_button') or not self.menu_button.winfo_exists():
+                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='pink')
+                    self.menu_button.place(relx=1.0, y=0, anchor='ne')
+
 
             logoMenubtn = Button(secondFrame, image=logoMenu, command=backMenu, border=0)
             logoMenubtn.grid(row=0,column=0)
@@ -289,6 +358,9 @@ class MasterPanel:
             txtsc8 = 'Hiboy S2 Pro\nVelocidad máx: 30 km/h\nPeso máx: 120 kg\n$9 dls /hora'
             infoSc8 = Label(secondFrame,wraplength=300,text=txtsc8,font=('Arial', 15),anchor='w',justify='left',bg='white')
             infoSc8.grid(row=4,column=5,pady=(0,20))
+            
+            secondFrame.update_idletasks()  # Forzar la actualización de secondFrame para obtener sus dimensiones
+            topScooters.geometry(f"{secondFrame.winfo_width()+20}x{secondFrame.winfo_height()}")
 
             # Actualizar el área de desplazamiento después de agregar todos los elementos
             def _on_mouse_wheel(event):
@@ -329,6 +401,18 @@ class MasterPanel:
             secondFrame = Frame(canvas,bg='pink')
             canvas.pack(side='left',fill='both',expand=TRUE)
             canvas.create_window(0,0,window=secondFrame,anchor='n')
+            
+            self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
+    
+            # Crear el botón de imagen para el menú
+            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+            self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
+    
+            # Crear el menú desplegable
+            self.user_menu = Menu(secondFrame, tearoff=0)
+            self.user_menu.add_command(label="Perfil", command=self.perfil)  # Reemplaza con tus funciones
+            self.user_menu.add_command(label="Sucursales", command=self.sucursales)
+            self.user_menu.add_command(label="Ayuda", command=self.ayuda)
         
             # Crear elementos dentro de secondFrame usando grid
             hiUserlbl = Label(secondFrame, text='Sección de bicicletas eléctricas', font=('Arial', 35,BOLD), bg='pink')
@@ -339,6 +423,10 @@ class MasterPanel:
             def backMenu():
                 topBikes.withdraw()
                 self.menu.deiconify()
+                if not hasattr(self, 'menu_button') or not self.menu_button.winfo_exists():
+                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='pink')
+                    self.menu_button.place(relx=1.0, y=0, anchor='ne')
+
 
             logoMenubtn = Button(secondFrame, image=logoMenu, command=backMenu, border=0)
             logoMenubtn.grid(row=0,column=0)
@@ -430,6 +518,9 @@ class MasterPanel:
             txtBike8 = 'VanMoof S3\nVelocidad máx: 32 km/h\nPeso máx: 120 kg\n$14 dls /hora'
             infoBike8 = Label(secondFrame,wraplength=300,text=txtBike8,font=('Arial', 15),anchor='w',justify='left',bg='white')
             infoBike8.grid(row=4,column=5,pady=(0,20))
+            
+            secondFrame.update_idletasks()  # Forzar la actualización de secondFrame para obtener sus dimensiones
+            topBikes.geometry(f"{secondFrame.winfo_width()+20}x{secondFrame.winfo_height()}")
 
             # Actualizar el área de desplazamiento después de agregar todos los elementos
             def _on_mouse_wheel(event):

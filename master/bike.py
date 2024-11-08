@@ -91,9 +91,28 @@ def infoPanelBk1 ():
                         cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
                 
                         vehiculoNom = 'Trek Allant+7'
-            
-                        txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
-                        messagebox.showinfo("Transaccion exitosa", txt)
+                        
+                        total = 250
+                    
+                        ans = messagebox.askquestion('Transacción',f'Su cuenta sería un total de {total} dólares.')
+                        if ans == 'yes':
+                            txt = f'Transacción exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()} 1 hora antes de su partida.'
+                            messagebox.showinfo("Transaccion exitosa", txt)
+                            
+                             # Añadir fechas al Listbox de fechas no disponibles
+                            fndLbx.insert(END, f'{fechaSalida.get()} - {fechaLlegada.get()}')
+                        
+                            # Limpiar los campos para una nueva reserva
+                            fechaSalida.set('')
+                            fechaLlegada.set('')
+                            titularTarjeta.set('')
+                            numTarjeta.set('')
+                            expiTarjeta.set('')
+                            cvv.set('')
+                            sucursalSeleccionada.set('Seleccione una sucursal')
+                        else:
+                            messagebox.showerror("Error", "Hubo un error en la transacción, por favor intente otra vez.")
+                        
                     except ValueError:
                         messagebox.showerror("Error", "El CVV debe contener solo números")
                         return
@@ -115,8 +134,26 @@ def infoPanelBk1 ():
                 
                     vehiculoNom = 'Trek Allant+7'
             
-                    txt = f'Transaccion exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()}'
-                    messagebox.showinfo("Transaccion exitosa", txt)
+                    total = 250
+                    
+                    ans = messagebox.askquestion('Transacción',f'Su cuenta sería un total de {total} dólares.')
+                    if ans == 'yes':
+                        txt = f'Transacción exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()} 1 hora antes de su partida.'
+                        messagebox.showinfo("Transaccion exitosa", txt)
+                        
+                        # Añadir fechas al Listbox de fechas no disponibles
+                        fndLbx.insert(END, f'{fechaSalida.get()} - {fechaLlegada.get()}')
+                        
+                        # Limpiar los campos para una nueva reserva
+                        fechaSalida.set('')
+                        fechaLlegada.set('')
+                        titularTarjeta.set('')
+                        numTarjeta.set('')
+                        expiTarjeta.set('')
+                        cvv.set('')
+                        sucursalSeleccionada.set('Seleccione una sucursal')
+                    else:
+                        messagebox.showerror("Error", "Hubo un error en la transacción, por favor intente otra vez.")
                 except ValueError:
                     messagebox.showerror("Error", "El CVV debe contener solo números")
                     return
