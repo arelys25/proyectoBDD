@@ -21,7 +21,7 @@ def infoPanelBk1 ():
     vehiculolbl = Label(topVehiculo, image=vehiculo, bd=0)
     vehiculolbl.place(x=40, y=55)  
     
-    txtVehiculo1 = 'Trek Allant+7\nVelocidad máx: 32 km/h\nPeso máx: 136 kg\nAccesorio: Portaequipaje\nPeso: 23.5 kg\nTiempo de carga: 5 hrs\nPlegable: No\nVoltaje: 36 V\nSeguro: Sí\n$16 dls /hora'
+    txtVehiculo1 = 'Trek Allant+7\nVelocidad máx: 32 km/h\nPeso máx: 136 kg\nAccesorio: Portaequipaje\nPeso: 23.5 kg\nTiempo de carga: 5 hrs\nPlegable: No\nVoltaje: 36 V\nSeguro: Sí\n$16 dls /dia'
     infoVehiculo = Label(topVehiculo,wraplength=800,text=txtVehiculo1,font=('Arial', 12),anchor='w',justify='left',bg='white')
     infoVehiculo.place(x=270,y=40)
     
@@ -30,10 +30,10 @@ def infoPanelBk1 ():
     if disponibilidad == True:
         estado = 'DISPONIBLE'
     else:
-        estado = 'NO DISPONIBLE'
+        estado = 'EN MANTENIMIENTO'
     
     estadolbl = Label(topVehiculo,text='Estado: '+estado,font=('Arial', 12,BOLD),bg='gray')
-    estadolbl.place(x=40,y=20)
+    estadolbl.place(x=30,y=20)
     
     
     fechaSalida = StringVar()
@@ -45,12 +45,12 @@ def infoPanelBk1 ():
     sucursalSeleccionada = StringVar()
     
         
-    fechaSalidalbl = Label(topVehiculo,text='Fecha de salida (dd/mm/yyyy): ',bg='gray')
+    fechaSalidalbl = Label(topVehiculo,text='Fecha de salida (yyyy/mm/dd): ',bg='gray')
     fechaSalidalbl.place(x=40,y=250) 
     fSalida = Entry(topVehiculo,font=('Arial', 11),textvariable=fechaSalida,bd=2)
     fSalida.place(x=220,y=250)
     
-    fechaLlegadalbl = Label(topVehiculo,text='Fecha de llegada (dd/mm/yyyy): ',bg='gray')
+    fechaLlegadalbl = Label(topVehiculo,text='Fecha de llegada (yyyy/mm/dd): ',bg='gray')
     fechaLlegadalbl.place(x=40,y=300) 
     fLlegada = Entry(topVehiculo,font=('Arial', 11),textvariable=fechaLlegada,bd=2)
     fLlegada.place(x=220,y=300)   
@@ -65,7 +65,7 @@ def infoPanelBk1 ():
     numTarjetaEny = Entry(topVehiculo,font=('Arial', 11),textvariable=numTarjeta,bd=2)
     numTarjetaEny.place(x=220,y=400)
     
-    expiTarjetalbl = Label(topVehiculo,text='Fecha de expiracion (mm/yy): ',bg='gray')
+    expiTarjetalbl = Label(topVehiculo,text='Fecha de expiracion (yyyy/mm/dd): ',bg='gray')
     expiTarjetalbl.place(x=40,y=450) 
     expiTarjetaEny = Entry(topVehiculo,font=('Arial', 11),textvariable=expiTarjeta,bd=2)
     expiTarjetaEny.place(x=220,y=450)
@@ -74,50 +74,6 @@ def infoPanelBk1 ():
     cvvlbl.place(x=174,y=500) 
     cvvEny = Entry(topVehiculo,font=('Arial', 11),textvariable=cvv,bd=2)
     cvvEny.place(x=220,y=500)
-    
-    
-    def rentar ():
-        if disponibilidad == True:
-            if not (fechaSalida.get() and fechaLlegada.get() and titularTarjeta.get() and numTarjeta.get() and expiTarjeta.get() and cvv.get()):
-                messagebox.showerror("Error", "Todos los campos son obligatorios")
-                return  
-            else: 
-                if sucursalSeleccionada.get() == 'Seleccione una sucursal':
-                    messagebox.showerror("Error", "Por favor seleccione una sucursal")
-                    return
-                else:
-                    # Validación de que CVV sea un número
-                    try:
-                        cvv_value = int(cvv.get())  # Intenta convertir el CVV a un entero
-                
-                        vehiculoNom = 'Trek Allant+7'
-                        
-                        total = 250
-                    
-                        ans = messagebox.askquestion('Transacción',f'Su cuenta sería un total de {total} dólares.')
-                        if ans == 'yes':
-                            txt = f'Transacción exitosa. Usted rento un {vehiculoNom} del {fechaSalida.get()} al {fechaLlegada.get()}. Favor de recoger el vehiculo en la sucursal {sucursalSeleccionada.get()} 1 hora antes de su partida.'
-                            messagebox.showinfo("Transaccion exitosa", txt)
-                            
-                             # Añadir fechas al Listbox de fechas no disponibles
-                            fndLbx.insert(END, f'{fechaSalida.get()} - {fechaLlegada.get()}')
-                        
-                            # Limpiar los campos para una nueva reserva
-                            fechaSalida.set('')
-                            fechaLlegada.set('')
-                            titularTarjeta.set('')
-                            numTarjeta.set('')
-                            expiTarjeta.set('')
-                            cvv.set('')
-                            sucursalSeleccionada.set('Seleccione una sucursal')
-                        else:
-                            messagebox.showerror("Error", "Hubo un error en la transacción, por favor intente otra vez.")
-                        
-                    except ValueError:
-                        messagebox.showerror("Error", "El CVV debe contener solo números")
-                        return
-        else:
-            messagebox.showerror("Error", "No puede rentar ahora porque el coche no esta disponible. Por favor haga una reservación.")
         
     def reservar ():
         if not (fechaSalida.get() and fechaLlegada.get() and titularTarjeta.get() and numTarjeta.get() and expiTarjeta.get() and cvv.get()):
@@ -158,11 +114,8 @@ def infoPanelBk1 ():
                     messagebox.showerror("Error", "El CVV debe contener solo números")
                     return
     
-    rentarbnt = Button(topVehiculo,text='  Rentar  ',font=('Arial',10),command=rentar,bg='pink')
-    rentarbnt.place(x=100,y=550)
-    
-    reservarbnt = Button(topVehiculo,text='  Reservar  ',font=('Arial',10),bg='pink',command=reservar)
-    reservarbnt.place(x=250,y=550)
+    reservarbnt = Button(topVehiculo,text='    Reservar    ',font=('Arial',12),bg='pink',command=reservar)
+    reservarbnt.place(x=270,y=550)
     
     fNODisponibleslbl = Label(topVehiculo,text='Fechas NO disponibles:',font=('Arial',12))
     fNODisponibleslbl.place(x=430,y=250)
