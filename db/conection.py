@@ -3,6 +3,7 @@ from mysql.connector import Error
 import hashlib
 from master.masterPanel import MasterPanel
 
+
 # Función para hacer hash de la contraseña
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
@@ -126,6 +127,7 @@ def login(username, password):
                 if hashed_password == user['password']:
                     print("Inicio de sesión exitoso")
                     log_login_attempt(user['ID'], username, hashed_password, 'exitoso')
+                    
                     MasterPanel()
                     return True  # Retorna True si el inicio de sesión es exitoso
                 else:
@@ -142,3 +144,6 @@ def login(username, password):
             if connection.is_connected():
                 cursor.close()
                 connection.close()
+
+
+

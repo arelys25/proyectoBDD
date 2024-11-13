@@ -36,7 +36,7 @@ class MasterPanel:
         self.menu.iconbitmap('./images/CarIcon.ico')
         self.menu.geometry('1000x600')
         utl.center_window(self.menu,1000,600)
-        self.menu.config(bg='gray')
+        self.menu.config(bg='#4A576B')
         self.menu.resizable(width=0, height=0)
         
         logoPage = utl.read_Image('./images/logo.png',(70,70))
@@ -50,7 +50,7 @@ class MasterPanel:
         self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
     
         # Crear el botón de imagen para el menú
-        self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+        self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0,bg='#4A576B')
         self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
     
         # Crear el menú desplegable
@@ -60,7 +60,7 @@ class MasterPanel:
         self.user_menu.add_command(label="Ayuda", command=self.ayuda)
     
         
-        hiUser = Label(self.menu,text='¡Hola! ¿Que vehículo deseas rentar hoy?',font=('Arial', 30,BOLD),bg='gray',pady=25)
+        hiUser = Label(self.menu,text='¡Hola! ¿Qué vehículo deseas rentar hoy?',fg='BLACK',font=('Georgia', 45,BOLD),bg='#4A576B',pady=30,wraplength=700)
         hiUser.pack()
         
         # CARS PANEL 2 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,23 +71,23 @@ class MasterPanel:
             topCars.iconbitmap('./images/CarIcon.ico')
             w,h = topCars.winfo_screenwidth(),topCars.winfo_screenheight() # que la ventana se adapte ala pantalla 
             topCars.geometry("%dx%d+0+0" % (w,h))
-            topCars.config(bg='gray')
+            topCars.config(bg='#4A576B')
             utl.center_window(topCars,w,h)
             
             
             # Scrolling 
             scrollbar = tk.Scrollbar(topCars)
-            canvas = Canvas(topCars,bg='pink',yscrollcommand=scrollbar.set)
+            canvas = Canvas(topCars,bg='#4A576B',yscrollcommand=scrollbar.set)
             scrollbar.config(command=canvas.yview)
             scrollbar.pack(side=RIGHT,fill=Y)
-            secondFrame = Frame(canvas,bg='pink')
+            secondFrame = Frame(canvas,bg='#4A576B')
             canvas.pack(side='left',fill='both',expand=TRUE)
             canvas.create_window(0,0,window=secondFrame,anchor='n')
             
             self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
     
             # Crear el botón de imagen para el menú
-            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='#4A576B')
             self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
     
             # Crear el menú desplegable
@@ -97,7 +97,7 @@ class MasterPanel:
             self.user_menu.add_command(label="Ayuda", command=self.ayuda)
         
             # Crear elementos dentro de secondFrame usando grid
-            hiUserlbl = Label(secondFrame, text='Sección de carros eléctricos', font=('Arial', 35,BOLD), bg='pink')
+            hiUserlbl = Label(secondFrame, text='Sección de carros eléctricos', font=('Georgia', 35,BOLD), bg='#4A576B')
             hiUserlbl.place(x=300,y=20)
 
             logoMenu = utl.read_Image('./images/logo.png', (70, 70))
@@ -107,11 +107,12 @@ class MasterPanel:
                 self.menu.deiconify()
                 # Re-posicionar el botón al regresar
                 if not hasattr(self, 'menu_button') or not self.menu_button.winfo_exists():
-                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='pink')
+                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='#4A576B')
                     self.menu_button.place(relx=1.0, y=0, anchor='ne')
 
             logoMenubtn = Button(secondFrame, image=logoMenu, command=backMenu, border=0)
             logoMenubtn.grid(row=0,column=0)
+            ToolTip(logoMenubtn,msg='Volver al menú principal')
 
             car1 = utl.read_Image('./images/cars/ChevroletBoltEV.png',(200, 170))
             car2 = utl.read_Image('./images/cars/KiaSoulEV.png',(200, 170))
@@ -170,36 +171,36 @@ class MasterPanel:
             
             # informcaracion de los carros
             txtcar1 = 'Chevrolet Bolt EV\nCapacidad: 5 personas\nMaletero: 381 lts\n$90 dls /dia'
-            infocar1 = Label(secondFrame,wraplength=300,text=txtcar1,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            infocar1 = Label(secondFrame,wraplength=300,text=txtcar1,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infocar1.grid(row=2,column=2,pady=(0,20))
             
             txtcar2 = 'Kia Soul EV\nCapacidad: 5 personas\nMaletero: 315 lts\n$65 dls /dia'
-            infocar2 = Label(secondFrame,wraplength=300,text=txtcar2,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            infocar2 = Label(secondFrame,wraplength=300,text=txtcar2,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infocar2.grid(row=2,column=3,pady=(0,20))
             
             txtcar3 = 'Mazda MX-30\nCapacidad: 5 personas\nMaletero: 366 lts\n$120 dls /dia'
-            infocar3 = Label(secondFrame,wraplength=300,text=txtcar3,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            infocar3 = Label(secondFrame,wraplength=300,text=txtcar3,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infocar3.grid(row=2,column=4,pady=(0,20))
             
             txtcar4 = 'Nissan Leaf\nCapacidad: 5 personas\nMaletero: 435 lts\n$85 dls /dia'
-            infocar4 = Label(secondFrame,wraplength=300,text=txtcar4,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            infocar4 = Label(secondFrame,wraplength=300,text=txtcar4,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infocar4.grid(row=4,column=2,pady=(0,20))
             
             txtcar5 = 'Tesla Model 3 \nLong Range AWD\nCapacidad: 5 personas\nMaletero: 425 lts\n$130 dls /dia'
-            infocar5 = Label(secondFrame,wraplength=300,text=txtcar5,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            infocar5 = Label(secondFrame,wraplength=300,text=txtcar5,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infocar5.grid(row=4,column=3,pady=(20,20))
             
             txtcar6 = 'Volkswagen ID.4\nCapacidad: 5 personas\nMaletero: 543 lts\n$125 dls /dia'
-            infocar6 = Label(secondFrame,wraplength=300,text=txtcar6,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            infocar6 = Label(secondFrame,wraplength=300,text=txtcar6,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infocar6.grid(row=4,column=4,pady=(0,20))
             
             txtcar7 = 'Tesla Model 3 \nStandard Range Plus\nCapacidad: 5 personas\nMaletero: 425 lts\n$128 dls /dia'
-            infocar7 = Label(secondFrame,wraplength=300,text=txtcar7,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            infocar7 = Label(secondFrame,wraplength=300,text=txtcar7,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infocar7.grid(row=2,column=5,pady=(20,20))
             
             txtcar8 = 'Renault Zoe\nCapacidad: 5 personas\nMaletero: 338 lts\n$45 dls /dia'
-            infocar8 = Label(secondFrame,wraplength=300,text=txtcar8,font=('Arial', 15),anchor='w',justify='left',bg='white')
-            infocar8.grid(row=4,column=5,pady=(20,20))
+            infocar8 = Label(secondFrame,wraplength=300,text=txtcar8,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
+            infocar8.grid(row=4,column=5,pady=(0,20))
             
             secondFrame.update_idletasks()  # Forzar la actualización de secondFrame para obtener sus dimensiones
             topCars.geometry(f"{secondFrame.winfo_width() +20}x{secondFrame.winfo_height()}")
@@ -216,7 +217,7 @@ class MasterPanel:
 
             topCars.mainloop()
         
-        logoCarlbl = Label(self.menu,text='Coche',font=('Arial', 25),bg='gray')
+        logoCarlbl = Label(self.menu,text='Coche',fg='BLACK',font=('Georgia', 25,BOLD),bg='#4A576B')
         logoCarlbl.place(x=150,y=200)    
         LogoCarBtn = Button(self.menu,image=logoCar,command=carsPanel,border=0,bg='black')
         LogoCarBtn.place(x=100,y=250)
@@ -230,22 +231,22 @@ class MasterPanel:
             topScooters.iconbitmap('./images/CarIcon.ico')
             w,h = topScooters.winfo_screenwidth(),topScooters.winfo_screenheight() # que la ventana se adapte ala pantalla 
             topScooters.geometry("%dx%d+0+0" % (w,h))
-            topScooters.config(bg='gray')
+            topScooters.config(bg='#4A576B')
             utl.center_window(topScooters,w,h)
             
             # Scrolling 
             scrollbar = tk.Scrollbar(topScooters)
-            canvas = Canvas(topScooters,bg='pink',yscrollcommand=scrollbar.set)
+            canvas = Canvas(topScooters,bg='#4A576B',yscrollcommand=scrollbar.set)
             scrollbar.config(command=canvas.yview)
             scrollbar.pack(side=RIGHT,fill=Y)
-            secondFrame = Frame(canvas,bg='pink')
+            secondFrame = Frame(canvas,bg='#4A576B')
             canvas.pack(side='left',fill='both',expand=TRUE)
             canvas.create_window(0,0,window=secondFrame,anchor='n')
             
             self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
     
             # Crear el botón de imagen para el menú
-            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='#4A576B')
             self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
     
             # Crear el menú desplegable
@@ -255,7 +256,7 @@ class MasterPanel:
             self.user_menu.add_command(label="Ayuda", command=self.ayuda)
         
             # Crear elementos dentro de secondFrame usando grid
-            hiUserlbl = Label(secondFrame, text='Sección de scooters eléctricos', font=('Arial', 35,BOLD), bg='pink')
+            hiUserlbl = Label(secondFrame, text='Sección de scooters eléctricos', font=('Georgia', 35,BOLD), bg='#4A576B')
             hiUserlbl.place(x=300,y=20)
 
             logoMenu = utl.read_Image('./images/logo.png', (70, 70))
@@ -264,12 +265,14 @@ class MasterPanel:
                 topScooters.withdraw()
                 self.menu.deiconify()
                 if not hasattr(self, 'menu_button') or not self.menu_button.winfo_exists():
-                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='pink')
+                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='#4A576B')
                     self.menu_button.place(relx=1.0, y=0, anchor='ne')
 
 
             logoMenubtn = Button(secondFrame, image=logoMenu, command=backMenu, border=0)
             logoMenubtn.grid(row=0,column=0)
+            ToolTip(logoMenubtn,msg='Volver al menú principal')
+            
 
             sc1 = utl.read_Image('./images/scooter/City.png',(200, 170))
             sc2 = utl.read_Image('./images/scooter/dualtron-thunder-3-electric-scooter-front-left_1200x.png',(200, 170))
@@ -327,36 +330,36 @@ class MasterPanel:
             
             
             # informcaracion de los carros
-            txtsc1 = 'Apollo City\nVelocidad máx: 40 km/h\nPeso máx: 120 kg\n$12 dls /hora'
-            infoSc1 = Label(secondFrame,wraplength=300,text=txtsc1,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc1 = 'Apollo City\nVelocidad máx: 40 km/h\nPeso máx: 120 kg\n$12 dls /dia'
+            infoSc1 = Label(secondFrame,wraplength=300,text=txtsc1,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc1.grid(row=2,column=2,pady=(0,20))
             
-            txtsc2 = 'Dualtron Thunder\nVelocidad máx: 80 km/h\nPeso máx: 150 kg\n$15 dls /hora'
-            infoSc2 = Label(secondFrame,wraplength=300,text=txtsc2,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc2 = 'Dualtron Thunder\nVelocidad máx: 80 km/h\nPeso máx: 150 kg\n$15 dls /dia'
+            infoSc2 = Label(secondFrame,wraplength=300,text=txtsc2,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc2.grid(row=2,column=3,pady=(0,20))
             
-            txtsc3 = 'Razor E300 \nVelocidad máx: 24 km/h\nPeso máx: 100 kg\n$7 dls /hora'
-            infoSc3 = Label(secondFrame,wraplength=300,text=txtsc3,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc3 = 'Razor E300 \nVelocidad máx: 24 km/h\nPeso máx: 100 kg\n$7 dls /dia'
+            infoSc3 = Label(secondFrame,wraplength=300,text=txtsc3,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc3.grid(row=2,column=4,pady=(0,20))
             
-            txtsc4 = 'Kugoo G-Booster\nVelocidad máx: 55 km/h\nPeso máx: 150 kg\n$14 dls /hora'
-            infoSc4 = Label(secondFrame,wraplength=300,text=txtsc4,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc4 = 'Kugoo G-Booster\nVelocidad máx: 55 km/h\nPeso máx: 150 kg\n$14 dls /dia'
+            infoSc4 = Label(secondFrame,wraplength=300,text=txtsc4,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc4.grid(row=4,column=2,pady=(0,20))
             
-            txtsc5 = 'Mi Electric Pro 2\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\n$8 dls /hora'
-            infoSc5 = Label(secondFrame,wraplength=300,text=txtsc5,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc5 = 'Mi Electric Pro 2\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\n$8 dls /dia'
+            infoSc5 = Label(secondFrame,wraplength=300,text=txtsc5,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc5.grid(row=4,column=3,pady=(0,20))
             
-            txtsc6 = 'Segway Ninebot \nKickScooter\nMAX G30\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\n$10 dls /hora'
-            infoSc6 = Label(secondFrame,wraplength=300,text=txtsc6,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc6 = 'Segway Ninebot \nKickScooter\nMAX G30\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\n$10 dls /dia'
+            infoSc6 = Label(secondFrame,wraplength=300,text=txtsc6,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc6.grid(row=4,column=4,pady=(40,20))
             
-            txtsc7 = 'Inokim OX Super\nVelocidad máx: 45 km/h\nPeso máx: 120 kg\n$13 dls /hora'
-            infoSc7 = Label(secondFrame,wraplength=300,text=txtsc7,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc7 = 'Inokim OX Super\nVelocidad máx: 45 km/h\nPeso máx: 120 kg\n$13 dls /dia'
+            infoSc7 = Label(secondFrame,wraplength=300,text=txtsc7,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc7.grid(row=2,column=5,pady=(15,20))
             
-            txtsc8 = 'Hiboy S2 Pro\nVelocidad máx: 30 km/h\nPeso máx: 120 kg\n$9 dls /hora'
-            infoSc8 = Label(secondFrame,wraplength=300,text=txtsc8,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtsc8 = 'Hiboy S2 Pro\nVelocidad máx: 30 km/h\nPeso máx: 120 kg\n$9 dls /dia'
+            infoSc8 = Label(secondFrame,wraplength=300,text=txtsc8,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoSc8.grid(row=4,column=5,pady=(0,20))
             
             secondFrame.update_idletasks()  # Forzar la actualización de secondFrame para obtener sus dimensiones
@@ -375,8 +378,8 @@ class MasterPanel:
             topScooters.mainloop()
         
         logoScooter = utl.read_Image('./images/scooter/logoScooter.png',(200,170))
-        logoScooterlbl = Label(self.menu,text='Scooter',font=('Arial', 25),bg='gray')
-        logoScooterlbl.place(x=450,y=200)    
+        logoScooterlbl = Label(self.menu,text='Scooter',fg='BLACK',font=('Georgia', 25,BOLD),bg='#4A576B')
+        logoScooterlbl.place(x=430,y=200)    
         LogoScooterBtn = Button(self.menu,image=logoScooter,command=scooterPanel,border=0,bg='black')
         LogoScooterBtn.place(x=400,y=250)
         ToolTip(LogoScooterBtn,msg='Click para ver los scooters')
@@ -390,22 +393,22 @@ class MasterPanel:
             topBikes.iconbitmap('./images/CarIcon.ico')
             w,h = topBikes.winfo_screenwidth(),topBikes.winfo_screenheight() # que la ventana se adapte ala pantalla 
             topBikes.geometry("%dx%d+0+0" % (w,h))
-            topBikes.config(bg='gray')
+            topBikes.config(bg='#4A576B')
             utl.center_window(topBikes,w,h)
             
             # Scrolling 
             scrollbar = tk.Scrollbar(topBikes)
-            canvas = Canvas(topBikes,bg='pink',yscrollcommand=scrollbar.set)
+            canvas = Canvas(topBikes,bg='#4A576B',yscrollcommand=scrollbar.set)
             scrollbar.config(command=canvas.yview)
             scrollbar.pack(side=RIGHT,fill=Y)
-            secondFrame = Frame(canvas,bg='pink')
+            secondFrame = Frame(canvas,bg='#4A576B')
             canvas.pack(side='left',fill='both',expand=TRUE)
             canvas.create_window(0,0,window=secondFrame,anchor='n')
             
             self.menu_image = utl.read_Image('./images/menuUser.png', (20, 20))  # Tamaño de la imagen del menú
     
             # Crear el botón de imagen para el menú
-            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='pink')
+            self.menu_button = Button(secondFrame, image=self.menu_image, command=self.show_menu, border=0,bg='#4A576B')
             self.menu_button.place(relx=1.0, y=0, anchor='ne')  # Ubicación del botón de menú
     
             # Crear el menú desplegable
@@ -415,7 +418,7 @@ class MasterPanel:
             self.user_menu.add_command(label="Ayuda", command=self.ayuda)
         
             # Crear elementos dentro de secondFrame usando grid
-            hiUserlbl = Label(secondFrame, text='Sección de bicicletas eléctricas', font=('Arial', 35,BOLD), bg='pink')
+            hiUserlbl = Label(secondFrame, text='Sección de bicicletas eléctricas', font=('Georgia', 35,BOLD), bg='#4A576B')
             hiUserlbl.place(x=300,y=20)
 
             logoMenu = utl.read_Image('./images/logo.png', (70, 70))
@@ -424,12 +427,14 @@ class MasterPanel:
                 topBikes.withdraw()
                 self.menu.deiconify()
                 if not hasattr(self, 'menu_button') or not self.menu_button.winfo_exists():
-                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='pink')
+                    self.menu_button = Button(self.menu, image=self.menu_image, command=self.show_menu, border=0, bg='#4A576B')
                     self.menu_button.place(relx=1.0, y=0, anchor='ne')
 
 
             logoMenubtn = Button(secondFrame, image=logoMenu, command=backMenu, border=0)
             logoMenubtn.grid(row=0,column=0)
+            ToolTip(logoMenubtn,msg='Volver al menú principal')
+            
 
             bike1 = utl.read_Image('./images/bikes/Allant7.png',(200, 170))
             bike2 = utl.read_Image('./images/bikes/D11.png',(200, 170))
@@ -487,36 +492,36 @@ class MasterPanel:
             
             
             # informcaracion de los carros
-            txtBike1 = 'Allant+7\nVelocidad máx: 32 km/h\nPeso máx: 136 kg\n$16 dls /hora'
-            infoBike1 = Label(secondFrame,wraplength=300,text=txtBike1,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike1 = 'Allant+7\nVelocidad máx: 32 km/h\nPeso máx: 136 kg\n$16 dls /dia'
+            infoBike1 = Label(secondFrame,wraplength=300,text=txtBike1,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike1.grid(row=2,column=2,pady=(0,20))
             
-            txtBike2 = 'Fiido D11\nVelocidad máx: 25 km/h\nPeso máx: 120 kg\n$8 dls /hora'
-            infoBike2 = Label(secondFrame,wraplength=300,text=txtBike2,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike2 = 'Fiido D11\nVelocidad máx: 25 km/h\nPeso máx: 120 kg\n$8 dls /dia'
+            infoBike2 = Label(secondFrame,wraplength=300,text=txtBike2,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike2.grid(row=2,column=3,pady=(0,20))
             
-            txtBike3 = 'Brompton Electric C\nLine\nVelocidad máx: 25 km/h\nPeso máx: 105 kg\n$12 dls /hora'
-            infoBike3 = Label(secondFrame,wraplength=300,text=txtBike3,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike3 = 'Brompton Electric C\nLine\nVelocidad máx: 25 km/h\nPeso máx: 105 kg\n$12 dls /dia'
+            infoBike3 = Label(secondFrame,wraplength=300,text=txtBike3,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike3.grid(row=2,column=4,pady=(20,20))
             
-            txtBike4 = 'Xiaomi Himo C26\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\n$6 dls /hora'
-            infoBike4 = Label(secondFrame,wraplength=300,text=txtBike4,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike4 = 'Xiaomi Himo C26\nVelocidad máx: 25 km/h\nPeso máx: 100 kg\n$6 dls /dia'
+            infoBike4 = Label(secondFrame,wraplength=300,text=txtBike4,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike4.grid(row=4,column=2,pady=(0,20))
             
-            txtBike5 = 'Ancheer Power Plus\nVelocidad máx: 25 km/h\nPeso máx: 120 kg\n$7 dls /hora'
-            infoBike5 = Label(secondFrame,wraplength=300,text=txtBike5,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike5 = 'Ancheer Power Plus\nVelocidad máx: 25 km/h\nPeso máx: 120 kg\n$7 dls /dia'
+            infoBike5 = Label(secondFrame,wraplength=300,text=txtBike5,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike5.grid(row=4,column=3,pady=(0,20))
             
-            txtBike6 = 'Riese & Müller\nSupercharger2\nVelocidad máx: 45 km/h\nPeso máx: 140 kg\n$20 dls /hora'
-            infoBike6 = Label(secondFrame,wraplength=300,text=txtBike6,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike6 = 'Riese & Müller\nSupercharger2\nVelocidad máx: 45 km/h\nPeso máx: 140 kg\n$20 dls /dia'
+            infoBike6 = Label(secondFrame,wraplength=300,text=txtBike6,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike6.grid(row=4,column=4,pady=(20,20))
             
-            txtBike7 = 'Specialized Turbo\nVado SL 4.0\nVelocidad máx: 45 km/h\nPeso máx: 120 kg\n$15 dls /hora'
-            infoBike7 = Label(secondFrame,wraplength=300,text=txtBike7,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike7 = 'Specialized Turbo\nVado SL 4.0\nVelocidad máx: 45 km/h\nPeso máx: 120 kg\n$15 dls /dia'
+            infoBike7 = Label(secondFrame,wraplength=300,text=txtBike7,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike7.grid(row=2,column=5,pady=(20,20))
             
-            txtBike8 = 'VanMoof S3\nVelocidad máx: 32 km/h\nPeso máx: 120 kg\n$14 dls /hora'
-            infoBike8 = Label(secondFrame,wraplength=300,text=txtBike8,font=('Arial', 15),anchor='w',justify='left',bg='white')
+            txtBike8 = 'VanMoof S3\nVelocidad máx: 32 km/h\nPeso máx: 120 kg\n$14 dls /dia'
+            infoBike8 = Label(secondFrame,wraplength=300,text=txtBike8,font=('Arial', 15),anchor='w',justify='left',bg='#4A576B')
             infoBike8.grid(row=4,column=5,pady=(0,20))
             
             secondFrame.update_idletasks()  # Forzar la actualización de secondFrame para obtener sus dimensiones
@@ -535,8 +540,8 @@ class MasterPanel:
             topBikes.mainloop()
         
         logoBike = utl.read_Image('./images/bikes/logoBike.png',(200,170))
-        logoBikelbl = Label(self.menu,text='Bicicletas',font=('Arial', 25),bg='gray')
-        logoBikelbl.place(x=730,y=200)    
+        logoBikelbl = Label(self.menu,text='Bicicletas',fg='BLACK',font=('Georgia', 25,BOLD),bg='#4A576B')
+        logoBikelbl.place(x=718,y=200)    
         LogoBikeBtn = Button(self.menu,image=logoBike,command=bikesPanel,border=0,bg='black')
         LogoBikeBtn.place(x=700,y=250)
         ToolTip(LogoBikeBtn,msg='Click para ver las bicicletas')
